@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { pick } from 'accept-language-parser';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -14,15 +15,15 @@ export async function middleware(req: NextRequest) {
 
     if (!availableLangs.includes(req.nextUrl.locale)) {
         let lang;
-        const locale = req.cookies.get('i18n-l10n-conf-lang');
-        if (locale && availableLangs.includes(locale)) {
-            lang = locale;
+        const langFromUrl = req.cookies.get('i18n-l10n-conf-lang');
+        if (langFromUrl && availableLangs.includes(langFromUrl)) {
+            lang = langFromUrl;
         }
 
-        // @ts-expect-error description
-        const acceptLanguage = req.headers['accept-language'];
-        if (!lang && acceptLanguage && availableLangs.includes(acceptLanguage)) {
-            lang = acceptLanguage;
+        const acceptLanguage = req.headers.get('accept-language');
+        const langFromHeader = acceptLanguage ? pick(availableLangs, acceptLanguage) : null;
+        if (!lang && langFromHeader) {
+            lang = langFromHeader;
         }
 
         lang ||= 'en';
