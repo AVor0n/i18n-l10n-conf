@@ -1,0 +1,67 @@
+.form {
+    margin: auto;
+    margin-top: 230px;
+    max-width: 930px;
+}
+
+.form__label {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 37px;
+}
+
+.form__tickets {
+    margin-top: 30px;
+}
+
+.form__tickets-wrapper {
+    display: flex;
+    gap: 50px;
+}
+
+.form__inputs {
+    margin-top: 70px;
+    max-width: 470px;
+}
+
+.form__inputs-label {
+    display: block;
+    margin-top: 30px;
+}
+
+.form__input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.form__input_phone {
+    max-width: 250px;
+}
+
+.form__tickets-count {
+    margin-right: 25px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.form__tickets-count-input {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+
+.form__submit {
+    margin-top: 70px;
+    width: 350px;
+}
+
+.form__submit-description {
+    margin-top: 25px;
+    font-size: 14px;
+    line-height: 18px;
+}

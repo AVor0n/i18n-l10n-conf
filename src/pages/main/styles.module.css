@@ -1,0 +1,119 @@
+.header {
+    margin-top: 10px;
+}
+
+.header__title {
+    padding: 5px 45px 35px;
+    font-weight: 400;
+    font-size: 105px;
+    line-height: 108px;
+}
+
+.header__logo {
+    width: 500px;
+    height: 500px;
+    margin-left: 150px;
+    margin-top: 70px;
+}
+
+.header__container-wrapper {
+    text-wrap: nowrap;
+}
+
+.header__container {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.header__container-title {
+    margin-top: -40px;
+}
+
+.header__container-date {
+    margin-top: -40px;
+    margin-left: 60px;
+}
+
+.header__container-button {
+    margin-left: 180px;
+}
+
+.header__container-logo {
+    margin-left: 45px;
+    margin-top: 130px;
+}
+
+.section {
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+.section__title {
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 88px;
+}
+
+.section__title_accent {
+    color: var(--accent-color);
+}
+
+.section__content {
+    margin-left: 250px;
+    margin-top: 80px;
+}
+
+.section__content-description {
+    max-width: 600px;
+    margin-bottom: 60px;
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.section__content-divider {
+    max-width: 900px;
+}
+
+.speakers {
+    display: flex;
+    gap: 130px;
+    flex-wrap: wrap;
+}
+
+.opportunities {
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.opportunities__item {
+    padding: 65px;
+    border: 2px dashed #555555;
+}
+
+.opportunities .opportunities__item:nth-child(2n) {
+    border-left: none;
+}
+
+.opportunities .opportunities__item:nth-child(-n + 2) {
+    border-bottom: none;
+}
+
+.opportunities__item-description {
+    margin-top: 25px;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.section__content-address {
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.section__content-map {
+    margin-top: 40px;
+}
+
+.section__content-button {
+    margin-top: 40px;
+}
