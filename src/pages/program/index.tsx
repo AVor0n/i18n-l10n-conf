@@ -1,58 +1,91 @@
-import classNames from "classnames/bind";
-import Head from "next/head";
-import Image from "next/image";
-import { Fragment } from "react";
+import classNames from 'classnames/bind';
+import Head from 'next/head';
+import Image from 'next/image';
+import { Fragment } from 'react';
 
-import { HorizontalDivider } from "@/components/horizontal-divider";
-import { PageHeader } from "@/components/page-header";
+import { HorizontalDivider } from '@/components/horizontal-divider';
+import { PageHeader } from '@/components/page-header';
 
-import { PRESENTATIONS } from "./constants";
-import styles from "./styles.module.css";
+import { PRESENTATIONS } from './constants';
+import styles from './styles.module.css';
+import {
+    FormattedMessage,
+    FormattedTime,
+    IntlProvider,
+    createIntl,
+    createIntlCache,
+} from 'react-intl';
 
 const cx = classNames.bind(styles);
 
-export const ProgramPage = () => (
-    <>
-        <Head>
-            <title>Программа - I&L–2024</title>
-        </Head>
+export const ProgramPage = ({
+    locale,
+    messages,
+}: {
+    locale: string;
+    messages: Record<string, string>;
+}) => {
+    const cache = createIntlCache();
+    const intl = createIntl({ locale, messages }, cache);
 
-        <PageHeader title="Программа" />
+    return (
+        <IntlProvider locale={locale} messages={messages}>
+            <Head>
+                <title>
+                    {intl.formatMessage(
+                        {
+                            id: 'programPage.title',
+                            defaultMessage: 'Программа - I&L–{year}',
+                        },
+                        { year: 2024 },
+                    )}
+                </title>
+            </Head>
 
-        <section className={cx("program")}>
-            <div className={cx("program__text")}>21:30</div>
-            <div className={cx("program__text", "program__text_registration")}>
-                Регистрация в офлайне
-            </div>
+            <PageHeader
+                title={intl.formatMessage({ id: 'header.program', defaultMessage: 'Программа' })}
+            />
 
-            <HorizontalDivider className={cx("program__divider")} />
+            <section className={cx('program')}>
+                <div className={cx('program__text')}>
+                    <FormattedTime value={new Date(2024, 7, 24, 21, 30, 0, 0)} />
+                </div>
+                <div className={cx('program__text', 'program__text_registration')}>
+                    <FormattedMessage
+                        id="programPage.registration"
+                        defaultMessage={'Регистрация в офлайне'}
+                    />
+                </div>
 
-            {PRESENTATIONS.map(
-                ({ time, avatar, name, title, presentationTitle, presentationDescription }) => (
-                    <Fragment key={presentationTitle}>
-                        <div className={cx("program__text")}>{time}</div>
+                <HorizontalDivider className={cx('program__divider')} />
 
-                        <div className={cx("program__card")}>
-                            <Image
-                                className={cx("program__card-avatar")}
-                                src={avatar}
-                                height={170}
-                                width={170}
-                                alt={name}
-                            />
-                            <div className={cx("program__card-text")}>{name}</div>
-                            <div className={cx("program__card-text")}>{title}</div>
-                        </div>
+                {PRESENTATIONS(locale, messages).map(
+                    ({ time, avatar, name, title, presentationTitle, presentationDescription }) => (
+                        <Fragment key={presentationTitle}>
+                            <div className={cx('program__text')}>{time}</div>
 
-                        <div>
-                            <div className={cx("program__text")}>{presentationTitle}</div>
-                            <div className={cx("program__description")}>
-                                {presentationDescription}
+                            <div className={cx('program__card')}>
+                                <Image
+                                    className={cx('program__card-avatar')}
+                                    src={avatar}
+                                    height={170}
+                                    width={170}
+                                    alt={name}
+                                />
+                                <div className={cx('program__card-text')}>{name}</div>
+                                <div className={cx('program__card-text')}>{title}</div>
                             </div>
-                        </div>
-                    </Fragment>
-                )
-            )}
-        </section>
-    </>
-);
+
+                            <div>
+                                <div className={cx('program__text')}>{presentationTitle}</div>
+                                <div className={cx('program__description')}>
+                                    {presentationDescription}
+                                </div>
+                            </div>
+                        </Fragment>
+                    ),
+                )}
+            </section>
+        </IntlProvider>
+    );
+};
