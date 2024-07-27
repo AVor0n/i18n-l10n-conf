@@ -1,3 +1,4 @@
+import { getLang } from '@/shared/getLang';
 import Document, {
     Html,
     Head,
@@ -16,8 +17,8 @@ class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
         const initialProps = await Document.getInitialProps(ctx);
 
-        const lang = (ctx.req?.headers['X-lang'] as string) || 'en';
-
+        // @ts-expect-error description
+        const lang = ctx.locale || getLang(ctx.req!);
         const dir = lang.startsWith('ar') ? 'rtl' : 'ltr';
 
         return { ...initialProps, dir, lang };
