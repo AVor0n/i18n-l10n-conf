@@ -26,7 +26,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ title }) => {
                         id="pageHeader.subtitle"
                         defaultMessage={'I&L–{year}'}
                         values={{
-                            year: intl.formatDate(new Date(), { year: 'numeric' }),
+                            year: 2024,
                         }}
                     />
                 </h2>

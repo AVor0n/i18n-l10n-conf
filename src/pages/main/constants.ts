@@ -34,7 +34,7 @@ export const SPEAKERS_DATA = (locale: string, messages: Record<string, string>) 
             }),
             title: intl.formatMessage({
                 id: 'speaker.evgeniyAntonov.title',
-                defaultMessage: 'CPO Alt IT',
+                defaultMessage: 'CTO Alt IT',
             }),
             description: intl.formatMessage({
                 id: 'speaker.evgeniyAntonov.description',

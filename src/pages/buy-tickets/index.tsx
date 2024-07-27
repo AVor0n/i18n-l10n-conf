@@ -39,7 +39,7 @@ export const BuyTicketsPage = ({
                                 defaultMessage: 'Купить билеты - I&L–{year}',
                             },
                             {
-                                year: intl.formatDate(new Date(), { year: 'numeric' }),
+                                year: 2024,
                             },
                         )}
                     </title>

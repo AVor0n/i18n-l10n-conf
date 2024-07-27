@@ -27,6 +27,7 @@ class MyDocument extends Document {
         return (
             // @ts-expect-error description
             <Html lang={this.props.lang} dir={this.props.dir}>
+                <link rel="icon" href="/favicon.ico" />
                 <Head />
                 <body>
                     <Main />

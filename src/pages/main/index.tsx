@@ -73,7 +73,7 @@ export const MainPage = ({
                                 />
                             </h2>
                             <h2 className={cx('header__title', 'header__container-date')}>
-                                <FormattedDate value={new Date(2024, 7, 21)} />
+                                <FormattedDate value={new Date(2024, 8, 21)} />
                             </h2>
                             <Button
                                 className={cx('header__container-button')}
