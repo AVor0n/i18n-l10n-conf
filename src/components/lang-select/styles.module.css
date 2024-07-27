@@ -5,7 +5,7 @@
 .lang-select__button {
     display: flex;
     align-items: center;
-    min-width: 120px;
+    min-inline-size: 120px;
 }
 
 .lang-select__button:hover {
@@ -23,10 +23,10 @@
 }
 
 .lang-select__menu {
-    width: 240px;
+    inline-size: 240px;
     position: absolute;
-    top: 150%;
-    left: -20px;
+    inset-block-start: 150%;
+    inset-inline-start: -20px;
     z-index: 1;
     padding: 24px 0;
     background: rgba(36, 35, 36, 0.8);

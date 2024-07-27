@@ -1,5 +1,5 @@
 .header {
-    margin-top: 10px;
+    margin-block-start: 10px;
 }
 
 .header__title {
@@ -9,12 +9,12 @@
 }
 
 .header__subtitle {
-    margin-top: 20px;
+    margin-block-start: 20px;
 }
 
 .header__subtitle-text {
     display: inline;
-    margin-left: 30px;
+    margin-inline-start: 30px;
     color: var(--accent-color);
     font-weight: 400;
     font-size: 80px;

@@ -1,14 +1,14 @@
 .header {
     margin: auto;
     padding: 20px var(--padding-inline);
-    max-width: var(--max-width);
+    max-inline-size: var(--max-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .navigation__link {
-    margin-left: 45px;
+    margin-inline-start: 45px;
     text-decoration: none;
     font-size: 20px;
     line-height: 20px;

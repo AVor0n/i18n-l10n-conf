@@ -1,7 +1,7 @@
 .ticket {
     padding: 30px;
     background-color: #201f20;
-    width: 440px;
+    inline-size: 440px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -34,11 +34,11 @@
 }
 
 .ticket__input {
-    width: 45px;
-    height: 45px;
+    inline-size: 45px;
+    block-size: 45px;
     cursor: pointer;
 }
 
 .ticket__description {
-    margin-top: 30px;
+    margin-block-start: 30px;
 }

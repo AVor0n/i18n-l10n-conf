@@ -1,5 +1,5 @@
 .header {
-    margin-top: 10px;
+    margin-block-start: 10px;
 }
 
 .header__title {
@@ -10,10 +10,10 @@
 }
 
 .header__logo {
-    width: 500px;
-    height: 500px;
-    margin-left: 150px;
-    margin-top: 70px;
+    inline-size: 500px;
+    block-size: 500px;
+    margin-inline-start: 150px;
+    margin-block-start: 70px;
 }
 
 .header__container-wrapper {
@@ -26,26 +26,26 @@
 }
 
 .header__container-title {
-    margin-top: -40px;
+    margin-block-start: -40px;
 }
 
 .header__container-date {
-    margin-top: -40px;
-    margin-left: 60px;
+    margin-block-start: -40px;
+    margin-inline-start: 60px;
 }
 
 .header__container-button {
-    margin-left: 180px;
+    margin-inline-start: 180px;
 }
 
 .header__container-logo {
-    margin-left: 45px;
-    margin-top: 130px;
+    margin-inline-start: 45px;
+    margin-block-start: 130px;
 }
 
 .section {
-    margin-top: 100px;
-    margin-bottom: 200px;
+    margin-block-start: 100px;
+    margin-block-end: 200px;
 }
 
 .section__title {
@@ -59,19 +59,19 @@
 }
 
 .section__content {
-    margin-left: 250px;
-    margin-top: 80px;
+    margin-inline-start: 250px;
+    margin-block-start: 80px;
 }
 
 .section__content-description {
-    max-width: 600px;
-    margin-bottom: 60px;
+    max-inline-size: 600px;
+    margin-block-end: 60px;
     font-size: 20px;
     line-height: 29px;
 }
 
 .section__content-divider {
-    max-width: 900px;
+    max-inline-size: 900px;
 }
 
 .speakers {
@@ -81,7 +81,7 @@
 }
 
 .opportunities {
-    max-width: 850px;
+    max-inline-size: 850px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
@@ -92,15 +92,15 @@
 }
 
 .opportunities .opportunities__item:nth-child(2n) {
-    border-left: none;
+    border-inline-start: none;
 }
 
 .opportunities .opportunities__item:nth-child(-n + 2) {
-    border-bottom: none;
+    border-block-end: none;
 }
 
 .opportunities__item-description {
-    margin-top: 25px;
+    margin-block-start: 25px;
     font-size: 24px;
     line-height: 29px;
 }
@@ -111,9 +111,9 @@
 }
 
 .section__content-map {
-    margin-top: 40px;
+    margin-block-start: 40px;
 }
 
 .section__content-button {
-    margin-top: 40px;
+    margin-block-start: 40px;
 }

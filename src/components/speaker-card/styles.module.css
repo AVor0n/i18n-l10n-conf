@@ -1,5 +1,5 @@
 .speaker-card {
-    width: 400px;
+    inline-size: 400px;
 }
 
 .speaker-card__avatar {
@@ -7,7 +7,7 @@
 }
 
 .speaker-card__name {
-    margin-top: 30px;
+    margin-block-start: 30px;
     font-size: 24px;
     line-height: 37px;
 }
@@ -19,7 +19,7 @@
 }
 
 .speaker-card__description {
-    margin-top: 5px;
+    margin-block-start: 5px;
     font-size: 16px;
     line-height: 23px;
 }
