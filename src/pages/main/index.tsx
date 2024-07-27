@@ -167,6 +167,7 @@ export const MainPage = ({
                                         defaultMessage={'Исследовать новые методологии'}
                                     />
                                 ),
+                                invert: false,
                                 Icon: MagnifyingGlassIcon,
                             },
                             {
@@ -178,6 +179,7 @@ export const MainPage = ({
                                         }
                                     />
                                 ),
+                                invert: locale === 'ar',
                                 Icon: MapArrowIcon,
                             },
                             {
@@ -189,6 +191,7 @@ export const MainPage = ({
                                         }
                                     />
                                 ),
+                                invert: locale === 'ar',
                                 Icon: SatelliteIcon,
                             },
                             {
@@ -198,11 +201,12 @@ export const MainPage = ({
                                         defaultMessage={'Опробовать полученные знания на практике'}
                                     />
                                 ),
+                                invert: locale === 'ar',
                                 Icon: BoxIcon,
                             },
-                        ].map(({ description, Icon }, idx) => (
+                        ].map(({ description, Icon, invert }, idx) => (
                             <div className={cx('opportunities__item')} key={idx}>
-                                <Icon />
+                                <Icon style={invert ? { transform: 'scale(-1,1)' } : undefined} />
                                 <div className={cx('opportunities__item-description')}>
                                     {description}
                                 </div>
