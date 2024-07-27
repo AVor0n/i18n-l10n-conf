@@ -1,17 +1,9 @@
-import { ProgramPage } from "@/pages/program";
-import { getUserLocale } from '@/shared/getLocale';
+import { ProgramPage } from '@/pages/program';
 import type { NextApiRequest } from 'next/types';
 
 export default ProgramPage;
 
-export async function getServerSideProps({
-    req,
-    locale: localeFromRouter,
-}: {
-    req: NextApiRequest;
-    locale: string;
-}) {
-    const locale = localeFromRouter || getUserLocale(req);
+export async function getServerSideProps({ locale }: { req: NextApiRequest; locale: string }) {
     const messagesModule = await import(`../src/pages/program/locale/${locale}.json`);
     const messages = messagesModule.default;
 

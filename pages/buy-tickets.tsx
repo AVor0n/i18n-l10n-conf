@@ -1,17 +1,9 @@
-import { BuyTicketsPage } from "@/pages/buy-tickets";
-import { getUserLocale } from '@/shared/getLocale';
+import { BuyTicketsPage } from '@/pages/buy-tickets';
 import type { NextApiRequest } from 'next/types';
 
 export default BuyTicketsPage;
 
-export async function getServerSideProps({
-    req,
-    locale: localeFromRouter,
-}: {
-    req: NextApiRequest;
-    locale: string;
-}) {
-    const locale = localeFromRouter || getUserLocale(req);
+export async function getServerSideProps({ locale }: { req: NextApiRequest; locale: string }) {
     const messagesModule = await import(`../src/pages/buy-tickets/locale/${locale}.json`);
     const messages = messagesModule.default;
 
