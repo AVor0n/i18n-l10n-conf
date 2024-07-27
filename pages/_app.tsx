@@ -1,9 +1,15 @@
-import type { AppProps } from "next/app";
-import "styles/globals.css";
+import type { AppProps } from 'next/app';
+import 'styles/globals.css';
 
-import { Layout } from "@/components/layout";
+import { Layout } from '@/components/layout';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
+
+const localeToDirection: Record<string, string> = {
+    ru: 'ltr',
+    en: 'ltr',
+    ar: 'rtl',
+};
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -11,9 +17,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
         <IntlProvider locale={locale}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
+            <div lang={locale} dir={localeToDirection[locale]}>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </div>
         </IntlProvider>
     );
 }
