@@ -1,128 +1,205 @@
-import classNames from "classnames/bind";
-import { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import map from "public/images/map.jpg";
-import { useCallback } from "react";
+import classNames from 'classnames/bind';
+import Head from 'next/head';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import map from 'public/images/map.jpg';
+import { useCallback } from 'react';
 
-import { Button } from "@/components/button";
-import { HorizontalDivider } from "@/components/horizontal-divider";
-import { SpeakerCard } from "@/components/speaker-card";
-import BoxIcon from "@/icons/box.svg";
-import ConfLogoIcon from "@/icons/conf-logo.svg";
-import MagnifyingGlassIcon from "@/icons/magnifying-glass.svg";
-import MapArrowIcon from "@/icons/map-arrow.svg";
-import SatelliteIcon from "@/icons/satellite.svg";
-import AltLogoIcon from "@/icons/alt-logo.svg";
+import { Button } from '@/components/button';
+import { HorizontalDivider } from '@/components/horizontal-divider';
+import { SpeakerCard } from '@/components/speaker-card';
+import BoxIcon from '@/icons/box.svg';
+import ConfLogoIcon from '@/icons/conf-logo.svg';
+import MagnifyingGlassIcon from '@/icons/magnifying-glass.svg';
+import MapArrowIcon from '@/icons/map-arrow.svg';
+import SatelliteIcon from '@/icons/satellite.svg';
+import AltLogoIcon from '@/icons/alt-logo.svg';
 
-import { SPEAKERS_DATA } from "./constants";
-import styles from "./styles.module.css";
+import { SPEAKERS_DATA } from './constants';
+import styles from './styles.module.css';
+import {
+    FormattedDate,
+    FormattedMessage,
+    IntlProvider,
+    createIntl,
+    createIntlCache,
+} from 'react-intl';
 
 const cx = classNames.bind(styles);
 
-export const MainPage: NextPage = () => {
+export const MainPage = ({
+    locale,
+    messages,
+}: {
+    locale: string;
+    messages: Record<string, string>;
+}) => {
     const router = useRouter();
-    const handleBuyTickets = useCallback(() => router.push("/buy-tickets"), [router]);
+    const handleBuyTickets = useCallback(() => router.push('/buy-tickets'), [router]);
+    const cache = createIntlCache();
+    const intl = createIntl({ locale, messages }, cache);
 
     return (
-        <>
+        <IntlProvider locale={locale} messages={messages}>
             <Head>
                 <title>
-                    Международная конференция по интернационализации и локализации - I&L–2024
+                    {intl.formatMessage(
+                        {
+                            id: 'mainPage.title',
+                            defaultMessage:
+                                'Международная конференция по интернационализации и локализации - I&L–{year}',
+                        },
+                        { year: 2024 },
+                    )}
                 </title>
             </Head>
 
-            <header className={cx("header")}>
-                <h2 className={cx("header__title")}>Интернационализация</h2>
+            <header className={cx('header')}>
+                <h2 className={cx('header__title')}>
+                    <FormattedMessage
+                        id="mainPage.header.title1"
+                        defaultMessage={'Интернационализация'}
+                    />
+                </h2>
 
-                <div className={cx("header__container-wrapper")}>
-                    <div className={cx("header__container")}>
-                        <h2 className={cx("header__title", "header__container-title")}>
-                            Локализация
+                <div className={cx('header__container-wrapper')}>
+                    <div className={cx('header__container')}>
+                        <h2 className={cx('header__title', 'header__container-title')}>
+                            <FormattedMessage
+                                id="mainPage.header.title2"
+                                defaultMessage="Локализация"
+                            />
                         </h2>
-                        <h2 className={cx("header__title", "header__container-date")}>
-                            21.08.2024
+                        <h2 className={cx('header__title', 'header__container-date')}>
+                            <FormattedDate value={new Date(2024, 7, 21)} />
                         </h2>
                         <Button
-                            className={cx("header__container-button")}
+                            className={cx('header__container-button')}
                             onClick={handleBuyTickets}
                         >
-                            Купить билеты
+                            <FormattedMessage
+                                id="mainPage.buyTickets"
+                                defaultMessage="Купить билеты"
+                            />
                         </Button>
                         <AltLogoIcon
-                            className={cx("header__container-logo")}
+                            className={cx('header__container-logo')}
                             data-testid="alt-logo"
                         />
                     </div>
 
-                    <ConfLogoIcon className={cx("header__logo")} data-testid="conf-logo" />
+                    <ConfLogoIcon className={cx('header__logo')} data-testid="conf-logo" />
                 </div>
             </header>
 
-            <section className={cx("section")}>
-                <h1 className={cx("section__title")}>
-                    <span className={cx("section__title_accent")}>I&L–2024</span> — <br />
-                    международная конференция по интернационализации и локализации для
-                    профессионалов в IT
+            <section className={cx('section')}>
+                <h1 className={cx('section__title')}>
+                    <span className={cx('section__title_accent')}>
+                        <FormattedMessage
+                            id="mainPage.section.title"
+                            defaultMessage={
+                                '<accent>I&L–{year}</accent> — {br} международная конференция по интернационализации и локализации для профессионалов в IT'
+                            }
+                            values={{
+                                year: 2024,
+                                br: <br />,
+                                accent: content => (
+                                    <span className={cx('section__title_accent')}>{content}</span>
+                                ),
+                            }}
+                        />
+                    </span>
                 </h1>
 
-                <div className={cx("section__content")}>
-                    <p className={cx("section__content-description")}>
-                        Мы рады приветствовать вас на нашей конференции, где вы сможете поделиться
-                        своим опытом, узнать о последних тенденциях и лучших практиках в области
-                        интернационализации и локализации
+                <div className={cx('section__content')}>
+                    <p className={cx('section__content-description')}>
+                        <FormattedMessage
+                            id="mainPage.section.description"
+                            defaultMessage="Мы рады приветствовать вас на нашей конференции, где вы сможете поделиться своим опытом, узнать о последних тенденциях и лучших практиках в области интернационализации и локализации"
+                        />
                     </p>
 
-                    <HorizontalDivider className={cx("section__content-divider")} />
+                    <HorizontalDivider className={cx('section__content-divider')} />
                 </div>
             </section>
 
-            <section className={cx("section")}>
-                <h3 className={cx("section__title")}>Спикеры</h3>
+            <section className={cx('section')}>
+                <h3 className={cx('section__title')}>
+                    <FormattedMessage id="mainPage.speakers.title" defaultMessage={'Спикеры'} />
+                </h3>
 
-                <div className={cx("speakers", "section__content")}>
-                    {SPEAKERS_DATA.map(({ id, avatar, name, title, description }) => (
-                        <SpeakerCard
-                            key={id}
-                            avatar={avatar}
-                            name={name}
-                            title={title}
-                            description={description}
-                        />
-                    ))}
+                <div className={cx('speakers', 'section__content')}>
+                    {SPEAKERS_DATA(locale, messages).map(
+                        ({ id, avatar, name, title, description }) => (
+                            <SpeakerCard
+                                key={id}
+                                avatar={avatar}
+                                name={name}
+                                title={title}
+                                description={description}
+                            />
+                        ),
+                    )}
                 </div>
             </section>
 
-            <section className={cx("section")}>
-                <h3 className={cx("section__title")}>Это отличная возможность, чтобы:</h3>
+            <section className={cx('section')}>
+                <h3 className={cx('section__title')}>
+                    <FormattedMessage
+                        id="mainPage.opportunities.title"
+                        defaultMessage={'Это отличная возможность, чтобы:'}
+                    />
+                </h3>
 
                 <div
-                    className={cx("opportunities", "section__content")}
+                    className={cx('opportunities', 'section__content')}
                     data-testid="opportunities-icons"
                 >
                     {[
                         {
-                            description: "Исследовать новые методологии",
+                            description: (
+                                <FormattedMessage
+                                    id="mainPage.opportunities.methodologies"
+                                    defaultMessage={'Исследовать новые методологии'}
+                                />
+                            ),
                             Icon: MagnifyingGlassIcon,
                         },
                         {
-                            description:
-                                "Рассмотреть актуальные проблемы и поиски путей их решения",
+                            description: (
+                                <FormattedMessage
+                                    id="mainPage.opportunities.problems"
+                                    defaultMessage={
+                                        'Рассмотреть актуальные проблемы и поиски путей их решения'
+                                    }
+                                />
+                            ),
                             Icon: MapArrowIcon,
                         },
                         {
-                            description: "Получить опыт внедрения инновационных подходов",
+                            description: (
+                                <FormattedMessage
+                                    id="mainPage.opportunities.innovations"
+                                    defaultMessage={
+                                        'Получить опыт внедрения инновационных подходов'
+                                    }
+                                />
+                            ),
                             Icon: SatelliteIcon,
                         },
                         {
-                            description: "Опробовать полученные знания на практике",
+                            description: (
+                                <FormattedMessage
+                                    id="mainPage.opportunities.practice"
+                                    defaultMessage={'Опробовать полученные знания на практике'}
+                                />
+                            ),
                             Icon: BoxIcon,
                         },
-                    ].map(({ description, Icon }) => (
-                        <div className={cx("opportunities__item")} key={description}>
+                    ].map(({ description, Icon }, idx) => (
+                        <div className={cx('opportunities__item')} key={idx}>
                             <Icon />
-                            <div className={cx("opportunities__item-description")}>
+                            <div className={cx('opportunities__item-description')}>
                                 {description}
                             </div>
                         </div>
@@ -130,25 +207,42 @@ export const MainPage: NextPage = () => {
                 </div>
             </section>
 
-            <section className={cx("section")}>
-                <h3 className={cx("section__title")}>Место проведения</h3>
+            <section className={cx('section')}>
+                <h3 className={cx('section__title')}>
+                    <FormattedMessage
+                        id="mainPage.venue.title"
+                        defaultMessage={'Место проведения'}
+                    />
+                </h3>
 
-                <div className={cx("section__content")}>
-                    <p className={cx("section__content-address")}>
-                        Собираемся в офисе наших друзей:
-                        <br />
-                        Россия, Москва, улица Льва Толстого, 16
+                <div className={cx('section__content')}>
+                    <p className={cx('section__content-address')}>
+                        <FormattedMessage
+                            id="mainPage.venue.address"
+                            defaultMessage={
+                                'Собираемся в офисе наших друзей: {br} Россия, Москва, улица Льва Толстого, 16'
+                            }
+                            values={{
+                                br: <br />,
+                            }}
+                        />
                     </p>
 
-                    <div className={cx("section__content-map")}>
-                        <Image src={map} alt="Карта с обозначением места проведения" />
+                    <div className={cx('section__content-map')}>
+                        <Image
+                            src={map}
+                            alt={intl.formatMessage({
+                                id: 'mainPage.venue.mapAlt',
+                                defaultMessage: 'Карта с обозначением места проведения',
+                            })}
+                        />
                     </div>
 
-                    <Button className={cx("section__content-button")} onClick={handleBuyTickets}>
-                        Купить билеты
+                    <Button className={cx('section__content-button')} onClick={handleBuyTickets}>
+                        <FormattedMessage id="mainPage.buyTickets" defaultMessage="Купить билеты" />
                     </Button>
                 </div>
             </section>
-        </>
+        </IntlProvider>
     );
 };

@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
         <IntlProvider locale={locale}>
-            <div lang={locale} dir={localeToDirection[locale]}>
+            <div dir={localeToDirection[locale]}>
                 <Layout>
                     <Component {...pageProps} />
                 </Layout>
